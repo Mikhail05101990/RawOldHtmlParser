@@ -1,0 +1,4 @@
+/media/joker/hdd1/webcore31/webAnaliser/obj/Debug/netcoreapp2.1/webAnaliser.csprojAssemblyReference.cache
+/media/joker/hdd1/webcore31/webAnaliser/obj/Debug/netcoreapp2.1/webAnaliser.AssemblyInfoInputs.cache
+/media/joker/hdd1/webcore31/webAnaliser/obj/Debug/netcoreapp2.1/webAnaliser.AssemblyInfo.cs
+/media/joker/hdd1/webcore31/webAnaliser/obj/Debug/netcoreapp2.1/webAnaliser.csproj.CoreCompileInputs.cache

@@ -1,0 +1,48 @@
+﻿@page
+@using System.Text.RegularExpressions;
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    var arr = (string[])ViewData["NiceStrings"];
+}
+
+<div align="left" id="exploreSource" class="text-center">
+    @for(int i =0; i<arr.Length; i++){
+        @if(@arr[i].Contains("<link")){
+            if(@arr[i].Contains("href=\"/")){
+                int st = @arr[i].IndexOf("href=\"");
+                if(st>0){
+                    string txt = arr[i].Substring(st+6);
+                    string[] str = txt.Split('"');
+                    bool check = @IndexModel.CheckIfScript(str[0]);
+                    if(check){
+                        <p id=@IndexModel.GetParName(i) style="text-align:left;">@arr[i]<a onclick="GetScript(this)" href=@IndexModel.GetFullLink(@ViewData["DOM"].ToString(),str[0])>Get script</a></p>
+                    }else{
+                        <p id=@IndexModel.GetParName(i) style="text-align:left;">@arr[i]<a href=@IndexModel.GetFullLink(@ViewData["DOM"].ToString(),str[0])>LINK</a></p>
+                    }
+                }else{
+                    st = arr[i].IndexOf("http");
+                    if(st>0){
+                        string txt = arr[i].Substring(st);
+                        string[] str = txt.Split('"');
+                        <p id=@IndexModel.GetParName(i) style="text-align:left;">@arr[i]<a href=@IndexModel.GetFullLink("",str[0])>LINK</a></p>
+                    }else{
+                        <p id=@IndexModel.GetParName(i) style="text-align:left;">@arr[i]</p>
+                    }
+                    
+                }
+            }else{
+                int st = arr[i].IndexOf("http");
+                if(st>0){
+                    string txt = arr[i].Substring(st);
+                    string[] str = txt.Split('"');
+                    <p id=@IndexModel.GetParName(i) style="text-align:left;">@arr[i]<a href=@IndexModel.GetFullLink("",str[0])>LINK</a></p>
+                }else{
+                    <p id=@IndexModel.GetParName(i) style="text-align:left;">@arr[i]</p>
+                }
+            }
+        }else{
+            <p id=@IndexModel.GetParName(i) style="text-align:left;">@arr[i]</p>
+        }
+    };
+</div>
